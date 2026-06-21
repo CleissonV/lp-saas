@@ -54,6 +54,12 @@ const testimonials = [
   { name: 'Fernanda Reis', role: 'VP de Vendas, TechCo', text: 'A IA de previsão de receita é incrível. Agora apresento projeções ao board com 90% de precisão.', stars: 5 },
 ]
 
+const avatarPhotos = [
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&faceindex=1',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&q=80&auto=format&fit=crop',
+]
+
 const faqs = [
   { q: 'Posso migrar do meu CRM atual?', a: 'Sim! Migramos seus dados do Salesforce, HubSpot, Pipedrive ou qualquer planilha Excel/Google Sheets em menos de 24h. Processo guiado e sem perda de dados.' },
   { q: 'Funciona com WhatsApp Business?', a: 'Sim, integração nativa com WhatsApp Business API. Envie mensagens, automatize respostas e registre todas as conversas direto no CRM.' },
@@ -176,12 +182,11 @@ const TestimonialCard = ({ t, index }) => {
       </div>
       <p className="text-slate-300 text-sm leading-relaxed mb-6">"{t.text}"</p>
       <div className="flex items-center gap-3">
-        <div
-          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm"
-          style={{ background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)' }}
-        >
-          {t.name[0]}
-        </div>
+        <img
+          src={avatarPhotos[index % 3]}
+          alt={t.name}
+          className="w-12 h-12 rounded-full object-cover object-top"
+        />
         <div>
           <div className="font-semibold text-white text-sm">{t.name}</div>
           <div className="text-slate-500 text-xs">{t.role}</div>
@@ -445,6 +450,60 @@ export default function App() {
           </div>
 
           <DashboardMockup />
+
+          {/* Hero product screenshot with floating metrics */}
+          <motion.div
+            initial={{ opacity: 0, y: 40, rotateX: 20 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mt-16 mx-auto max-w-4xl"
+            style={{ perspective: '1000px' }}
+          >
+            <div className="relative rounded-xl overflow-hidden shadow-[0_0_80px_rgba(139,92,246,0.3)] border border-[#8b5cf6]/20">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop"
+                alt="FluxCRM dashboard"
+                className="w-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/60 to-transparent" />
+            </div>
+            {/* Glow effect */}
+            <div className="absolute -inset-4 bg-[#8b5cf6]/10 blur-3xl -z-10 rounded-3xl" />
+
+            {/* Floating metric card — top right */}
+            <motion.div
+              animate={{ y: [-8, 8, -8] }}
+              transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+              className="absolute -top-4 -right-8 bg-[#1e1b4b] border border-[#8b5cf6]/30 rounded-xl p-3 shadow-xl"
+            >
+              <div className="text-xs text-[#8b5cf6]">Receita Mensal</div>
+              <div className="text-white font-bold text-lg">R$ 128.4k</div>
+              <div className="text-green-400 text-xs">↑ 23% vs mês anterior</div>
+            </motion.div>
+
+            {/* Floating metric card — bottom left */}
+            <motion.div
+              animate={{ y: [8, -8, 8] }}
+              transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut', delay: 0.5 }}
+              className="absolute -bottom-4 -left-8 bg-[#1e1b4b] border border-[#06b6d4]/30 rounded-xl p-3 shadow-xl"
+            >
+              <div className="text-xs text-[#06b6d4]">Leads Ativos</div>
+              <div className="text-white font-bold text-lg">1.247</div>
+              <div className="text-green-400 text-xs">↑ 12% essa semana</div>
+            </motion.div>
+
+            {/* Floating metric card — top left */}
+            <motion.div
+              animate={{ y: [-6, 6, -6] }}
+              transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut', delay: 1 }}
+              className="absolute top-1/3 -left-10 bg-[#1e1b4b] border border-[#10b981]/30 rounded-xl p-3 shadow-xl"
+            >
+              <div className="text-xs text-[#10b981]">Taxa de Conv.</div>
+              <div className="text-white font-bold text-lg">34.2%</div>
+              <div className="text-green-400 text-xs">↑ melhor do setor</div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -492,6 +551,22 @@ export default function App() {
             <FeatureCard key={i} feature={feature} index={i} />
           ))}
         </div>
+
+        {/* Analytics screenshot */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-16 rounded-2xl overflow-hidden border border-[#8b5cf6]/20 shadow-[0_0_60px_rgba(139,92,246,0.15)]"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=600&q=80&auto=format&fit=crop"
+            alt="analytics"
+            className="w-full rounded-lg border border-[#8b5cf6]/20"
+            loading="lazy"
+          />
+        </motion.div>
       </section>
 
       {/* How it works */}
@@ -572,6 +647,12 @@ export default function App() {
 
       {/* CTA */}
       <section className="py-24 relative overflow-hidden">
+        {/* Background image */}
+        <img
+          src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&q=80&auto=format&fit=crop"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-10"
+        />
         <div
           className="absolute inset-0"
           style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.15), rgba(99,102,241,0.1), rgba(6,182,212,0.05))' }}
