@@ -313,7 +313,7 @@ export default function App() {
               className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{ background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)' }}
             >
-              <FaBolt className="text-white" size={14} />
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="white"><path d="M14 3H8L6 13h5l-2 8 9-12h-6z" /></svg>
             </div>
             <span className="gradient-text">FluxCRM</span>
           </a>
