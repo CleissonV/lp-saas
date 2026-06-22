@@ -376,6 +376,14 @@ export default function App() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+        {/* Video background */}
+        <video
+          autoPlay loop muted playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+        >
+          <source src="https://assets.mixkit.co/videos/51447/51447-1080.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#0f172a]/80 pointer-events-none" />
         {/* Animated orbs */}
         <div
           className="absolute top-1/4 -left-32 w-96 h-96 rounded-full orb1 pointer-events-none"
